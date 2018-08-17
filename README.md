@@ -14,3 +14,4 @@
 4.
   配置linux计划任务，周期性调用hive脚本，对上一天的日志信息进行kpi统计，统计结果进入hbase映射表中。
   集合web前端部分，对hbase库中数据进行展现和可视化处理。
+![image](https://github.com/AlenaRuicheng/mybigdata/blob/master/elements/mybigdata-outline.jpg)
