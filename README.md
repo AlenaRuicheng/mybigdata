@@ -1,6 +1,6 @@
 ## 项目概述
 ### 项目支撑
-    1.项目初始化<br>
+1.项目初始化<br>
   基于servler3.0 的web层框架准备，springmvc+spring+hibernate的基础类库
   实现。<br>
 2.nginx服务器反向代理配置<br>
@@ -15,4 +15,9 @@
 4.
   配置linux计划任务，周期性调用hive脚本，对上一天的日志信息进行kpi统计，统计结果进入hbase映射表中。
   集合web前端部分，对hbase库中数据进行展现和可视化处理。
+```Java
+public static void main(String[] args){
+    System.out.println("hhhhh");
+}
+```
 ![image](https://github.com/AlenaRuicheng/mybigdata/blob/master/elements/mybigdata-outline.jpg)
