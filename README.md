@@ -16,7 +16,14 @@
 　　部署crontab计划任务，周期性调用Hive脚本，对上一天的日志信息进行pv统计<br>
 　　使用HBase存储处理器将数据映射到HBase中，以方便于快速查询统计结果<br>
 　　集合web前端部分，对HBase库中数据进行展现和可视化处理<br><br>
-shell脚本——创建Hive分区表
+
+![image](https://github.com/AlenaRuicheng/mybigdata/blob/master/elements/mybigdata-outline.jpg)
+　　　　　　　　　　　　　　　　　　　　　　　　　图1  项目导图<br>
+![image](https://github.com/AlenaRuicheng/mybigdata/blob/master/elements/HDFS%20info.png)
+　　　　　　　　　　　　　　　　　　　　　　　　　图2  HDFS集群配置情况<br>
+![image](https://github.com/AlenaRuicheng/mybigdata/blob/master/elements/job%20info.png)
+　　　　　　　　　　　　　　　　　　　　　　　　　图3  作业执行中<br>
+<br>shell脚本——创建Hive分区表
 ```Bash
 #!/bin/sh
 #This shell is designed to create tormorrow's partition
@@ -29,5 +36,3 @@ d=`date -d "1 day" +%d`
 hive -e "alter table logs.request_info add partition(year=${y},month=${m},day=${d})"
 hadoop fs -chown -R auas:auas /user/hive/warehouse/logs.db/request_info/year\=${y}
 ```
-![image](https://github.com/AlenaRuicheng/mybigdata/blob/master/elements/mybigdata-outline.jpg)
-　　　　　　　　　　　　　　　　　　　　　　　　　图1  项目导图
