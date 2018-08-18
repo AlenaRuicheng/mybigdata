@@ -1,5 +1,8 @@
 ## 项目概述
-### 项目支撑
+
+    项目从前端给予Spring MVC架构的前端展现，以及Spring与Hibernate在Servlet3.0规范下的纯注解编程体验，迅捷完成复杂业务流程的编程实现处理。用户访问编写的网页，产生访问日志记录在Nginx的日志目录下，由Flume收集日志并将日志输送到Kafka中。项目中自定义两个Kafka消费者，一个直接将收到的日志写入HDFS中(原生数据)作为备份，另一个消费者对日志记录进行数据清洗，过滤掉不需要的字段，然后把清洗后的数据交由Hive管理。Hive通过HBaseStorageHandler与HBase关联起来，这样底层数据将存储到HBase中，数据查找会更快速。<br>
+项目通篇采用maven实现项目依赖管理，更有三方插件在应用过程中的使用便捷扩展与使用。
+## 项目支撑
 1.项目初始化<br>
   基于servler3.0 的web层框架准备，springmvc+spring+hibernate的基础类库
   实现。<br>
