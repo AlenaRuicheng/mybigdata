@@ -5,7 +5,7 @@
 ### 项目初始化
 　　基于Servler3.0 的web层框架准备，Spring MVC + Spring + Hibernate的基础类库实现
 ### Nginx服务器反向代理配置
-　　nginx + tomcat实现动静资源隔离<br>
+　　Nginx + Tomcat实现动静资源隔离<br>
 　　shell + crontab实现日志滚动<br>
 　　使用Apache Bench进行压力测试
 ### 部署flume和kafka集群
@@ -13,9 +13,9 @@
 　　实现kafka消费者，数据分成两部分处理，一部分作为原生数据直接sink到HDFS，作为备份<br>
 　　另一部分进行数据清洗，并将清洗后的数据写入到hive数据库的分区表中
 ### 配置HBase
-　　部署crontab计划任务，周期性调用hive脚本，对上一天的日志信息进行pv统计<br>
-　　使用hbase存储处理器将数据映射到hbase中，以方便于快速查询统计结果<br>
-　　集合web前端部分，对hbase库中数据进行展现和可视化处理<br><br>
+　　部署crontab计划任务，周期性调用Hive脚本，对上一天的日志信息进行pv统计<br>
+　　使用HBase存储处理器将数据映射到HBase中，以方便于快速查询统计结果<br>
+　　集合web前端部分，对HBase库中数据进行展现和可视化处理<br><br>
 shell脚本——创建Hive分区表
 ```Bash
 #!/bin/sh
@@ -30,3 +30,4 @@ hive -e "alter table logs.request_info add partition(year=${y},month=${m},day=${
 hadoop fs -chown -R auas:auas /user/hive/warehouse/logs.db/request_info/year\=${y}
 ```
 ![image](https://github.com/AlenaRuicheng/mybigdata/blob/master/elements/mybigdata-outline.jpg)
+　　　　　　　　　　　　　　　　　　图1  项目导图
