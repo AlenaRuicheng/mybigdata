@@ -20,9 +20,9 @@
 ![image](https://github.com/AlenaRuicheng/mybigdata/blob/master/elements/mybigdata-outline.jpg)
 　　　　　　　　　　　　　　　　　　　　　　　　　图1  项目导图<br>
 ![image](https://github.com/AlenaRuicheng/mybigdata/blob/master/elements/HDFS%20info.png)
-　　　　　　　　　　　　　　　　　　　　　　　　　图2  HDFS集群配置情况<br>
+　　　　　　　　　　　　　　　　　　　　　　图2  HDFS集群配置情况<br>
 ![image](https://github.com/AlenaRuicheng/mybigdata/blob/master/elements/job%20info.png)
-　　　　　　　　　　　　　　　　　　　　　　　　　图3  作业执行中<br>
+　　　　　　　　　　　　　　　　　　　　　　　图3  作业执行中<br>
 <br>shell脚本——创建Hive分区表
 ```Bash
 #!/bin/sh
