@@ -1,6 +1,6 @@
 ## 项目概述
 ### 项目支撑
-1.项目初始化<br>
+    1.项目初始化<br>
   基于servler3.0 的web层框架准备，springmvc+spring+hibernate的基础类库
   实现。<br>
 2.nginx服务器反向代理配置<br>
