@@ -28,7 +28,7 @@
 #!/bin/sh
 #This shell is designed to create tormorrow's partition
 
-#use source command to load env file
+#使用source引入环境变量
 source /home/centos/.bashrc
 y=`date -d "1 day" +%Y`
 m=`date -d "1 day" +%m`
