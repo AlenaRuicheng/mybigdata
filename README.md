@@ -1,4 +1,4 @@
-# mybigdata
+# 项目概述
 1.项目初始化<br>
   基于servler3.0 的web层框架准备，springmvc+spring+hibernate的基础类库
   实现。<br>
