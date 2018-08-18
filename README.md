@@ -30,4 +30,4 @@ hive -e "alter table logs.request_info add partition(year=${y},month=${m},day=${
 hadoop fs -chown -R auas:auas /user/hive/warehouse/logs.db/request_info/year\=${y}
 ```
 ![image](https://github.com/AlenaRuicheng/mybigdata/blob/master/elements/mybigdata-outline.jpg)
-　　　　　　　　　　　　　　　　　　图1  项目导图
+　　　　　　　　　　　　　　　　　　　　　　图1  项目导图
