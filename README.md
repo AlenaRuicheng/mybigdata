@@ -36,3 +36,42 @@ d=`date -d "1 day" +%d`
 hive -e "alter table logs.request_info add partition(year=${y},month=${m},day=${d})"
 hadoop fs -chown -R auas:auas /user/hive/warehouse/logs.db/request_info/year\=${y}
 ```
+<br>shell脚本——统计pv值并写入pv表中
+```Bash
+#!/bin/sh
+#This shell script is designed to caculate the page view of the last day
+
+#use source command to load env file
+source /home/centos/.bashrc
+ts=`date -d "-1 day" +%s`
+y=`date -d "-1 day" +%Y`
+m=`date -d "-1 day" +%m`
+d=`date -d "-1 day" +%d`
+hive -e "insert into logs.pv(rowid,year,month,day,page,amount) select ${ts},year,month,day,time_local,count(*) as amount from logs.request_info where year=${y} and month=${m} and day=${d} group by ${ts},year,month,day,time_local"
+```
+<br>shell脚本——将Nginx日志目录下产生的日志文件滚动到spooldir下
+```Bash
+#!/bin/sh
+#set the date format
+dateformat=`date +%Y-%m-%d-%H-%M`
+path=/usr/soft_r/nginx/logs/access_$dateformat.log
+#copy the file to the path
+cp /usr/soft_r/nginx/logs/access.log $path
+#count lines up
+lines=`wc -l < $path`
+if [ $lines -eq 0 ];then
+ rm -f $path
+else
+ #get the hostname and insert it at the beginning of the log line
+ host=`hostname`
+ sed -i 's/^/'${host}',&/g' $path
+ #change the owner
+ chown centos:centos $path
+ #roll logs to the flume spooledir
+ mv $path /usr/soft_r/nginx/logs/flume
+ #remove all lines in access.log
+ sed -i '1,'$lines'd' /usr/soft_r/nginx/logs/access.log
+ #reboot nginx, otherwise the log cannot roll
+ kill -USR1 `cat /usr/soft_r/nginx/logs/nginx.pid`
+fi
+```
