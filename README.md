@@ -15,10 +15,18 @@
 ### 配置HBase
 　　部署crontab计划任务，周期性调用hive脚本，对上一天的日志信息进行pv统计<br>
 　　使用hbase存储处理器将数据映射到hbase中，以方便于快速查询统计结果<br>
-　　集合web前端部分，对hbase库中数据进行展现和可视化处理
-```Java
-public static void main(String[] args){
-    System.out.println("hhhhh");
-}
+　　集合web前端部分，对hbase库中数据进行展现和可视化处理<br><br>
+shell脚本——创建Hive分区表
+```Bash
+#!/bin/sh
+#This shell is designed to create tormorrow's partition
+
+#use source command to load env file
+source /home/centos/.bashrc
+y=`date -d "1 day" +%Y`
+m=`date -d "1 day" +%m`
+d=`date -d "1 day" +%d`
+hive -e "alter table logs.request_info add partition(year=${y},month=${m},day=${d})"
+hadoop fs -chown -R auas:auas /user/hive/warehouse/logs.db/request_info/year\=${y}
 ```
 ![image](https://github.com/AlenaRuicheng/mybigdata/blob/master/elements/mybigdata-outline.jpg)
