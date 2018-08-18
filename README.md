@@ -41,7 +41,7 @@ hadoop fs -chown -R auas:auas /user/hive/warehouse/logs.db/request_info/year\=${
 #!/bin/sh
 #This shell script is designed to caculate the page view of the last day
 
-#use source command to load env file
+#使用source引入环境变量
 source /home/centos/.bashrc
 ts=`date -d "-1 day" +%s`
 y=`date -d "-1 day" +%Y`
@@ -52,28 +52,28 @@ hive -e "insert into logs.pv(rowid,year,month,day,page,amount) select ${ts},year
 <br>shell脚本——将Nginx日志目录下产生的日志文件滚动到spooldir下
 ```Bash
 #!/bin/sh
-#set the date format
+#设置日期格式
 dateformat=`date +%Y-%m-%d-%H-%M`
 path=/usr/soft_r/nginx/logs/access_$dateformat.log
-#copy the file to the path
+#复制文件到指定目录
 cp /usr/soft_r/nginx/logs/access.log $path
-#count lines up
+#计算日志行数
 lines=`wc -l < $path`
 if [ $lines -eq 0 ];then
  rm -f $path
 else
- #get the hostname and insert it at the beginning of the log line
+ #获取主机名并将其插入到每行日志记录的起始位置
  host=`hostname`
  sed -i 's/^/'${host}',&/g' $path
- #change the owner
+ #更改文件所属
  chown centos:centos $path
- #roll logs to the flume spooledir
+ #把日志文件移动到spooldir
  mv $path /usr/soft_r/nginx/logs/flume
- #remove all lines in access.log
+ #删除access.log文件中的所有行
  sed -i '1,'$lines'd' /usr/soft_r/nginx/logs/access.log
- #reboot nginx, otherwise the log cannot roll
+ #重启Nginx服务器
  kill -USR1 `cat /usr/soft_r/nginx/logs/nginx.pid`
 fi
 ```
 ## 项目总结与收获
-　　在项目编写过程中，麻烦最多的就是大数据各种环境搭建了，我觉得要是需要搭建的进群很大的话，我们可以先下载好需要的安装包，然后编写脚本进行批量执行以节约时间成本。还有就是本集群依托虚拟机来实现，电脑配置有点跟不上，导致程序调试变得比较困难。因此每一次在程序运行之前，都要仔细考虑各个参数设置是否正确。通过本次项目实践，我学到了许多新的东西，与此同时也发现自己还有很多不足与改进之处，这些都是促使我不断进步的源泉。
+　　在项目编写过程中，麻烦最多的就是大数据各种环境搭建了，我觉得要是需要搭建的进群很大的话，我们可以先下载好需要的安装包，然后编写脚本进行批量执行以节约时间成本。还有就是本集群依托虚拟机来实现，电脑配置有点跟不上，导致程序调试变得比较困难。因此每一次在程序运行之前，都要仔细考虑各个参数设置是否正确。通过本次项目实践，我发现之前学到的东西有些生疏，这次实践又使这些旧的知识得到了巩固，还学到了许多新的东西，与此同时也发现自己还有很多不足与改进之处，这些都是促使我不断进步的源泉。
