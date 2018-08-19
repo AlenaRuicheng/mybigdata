@@ -23,6 +23,10 @@
 　　　　　　　　　　　　　　　　　　　　　　图2  HDFS集群配置情况<br>
 ![image](https://github.com/AlenaRuicheng/mybigdata/blob/master/elements/job%20info.png)
 　　　　　　　　　　　　　　　　　　　　　　　图3  作业执行中<br>
+![image](https://github.com/AlenaRuicheng/mybigdata/blob/master/elements/AppcheBench%20executing.png)
+　　　　　　　　　　　　　　　　　　　　　图4  Apache Bench执行中<br>
+![image](https://github.com/AlenaRuicheng/mybigdata/blob/master/elements/view-pv.png)
+　　　　　　　　　　　　　　　　　　　　　　图5  查看pv统计情况<br>
 <br>shell脚本——创建Hive分区表
 ```Bash
 #!/bin/sh
