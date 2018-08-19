@@ -1,0 +1,6 @@
+zookeeper.connect=master:2181,slave1:2181,slave2:2181
+group.id=test-consumer-group
+auto.offset.reset=largest
+zookeeper.session.timeout.ms=500
+zookeeper.sync.time.ms=200
+auto.commit.interval.ms=1000
