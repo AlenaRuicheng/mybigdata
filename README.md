@@ -47,10 +47,12 @@ hadoop fs -chown -R auas:auas /user/hive/warehouse/logs.db/request_info/year\=${
 
 #使用source引入环境变量
 source /home/centos/.bashrc
-ts=`date -d "-1 day" +%s`
+ts=`date +%s`
 y=`date -d "-1 day" +%Y`
 m=`date -d "-1 day" +%m`
 d=`date -d "-1 day" +%d`
+#时间戳作为RowKey,在前面加一个随机数使RowKey均匀分布
+ts=$((ts%3))$ts
 hive -e "insert into logs.pv(rowid,year,month,day,page,amount) select ${ts},year,month,day,time_local,count(*) as amount from logs.request_info where year=${y} and month=${m} and day=${d} group by ${ts},year,month,day,time_local"
 ```
 <br>shell脚本——将Nginx日志目录下产生的日志文件滚动到spooldir下
