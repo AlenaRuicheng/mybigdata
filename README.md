@@ -16,7 +16,7 @@
 　　部署crontab计划任务，周期性调用Hive脚本，对上一天的日志信息进行pv统计<br>
 　　使用HBase存储处理器将数据映射到HBase中，以方便于快速查询统计结果<br>
 　　集合web前端部分，对HBase库中数据进行展现和可视化处理<br><br>
-
+## 项目细节展示
 ![image](https://github.com/AlenaRuicheng/mybigdata/blob/master/elements/mybigdata-outline.jpg)
 　　　　　　　　　　　　　　　　　　　　　　　　　图1  项目导图<br>
 ![image](https://github.com/AlenaRuicheng/mybigdata/blob/master/elements/HDFS%20info.png)
@@ -27,6 +27,7 @@
 　　　　　　　　　　　　　　　　　　　　　图4  Apache Bench执行中<br>
 ![image](https://github.com/AlenaRuicheng/mybigdata/blob/master/elements/view-pv.png)
 　　　　　　　　　　　　　　　　　　　　　　图5  查看pv统计情况<br>
+## 关键脚本展示
 <br>shell脚本createHivePartitions.sh——创建Hive分区表
 ```Bash
 #!/bin/sh
