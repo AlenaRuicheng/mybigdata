@@ -25,7 +25,7 @@
 　　　　　　　　　　　　　　　　　　　　　　　图3  作业执行中<br>
 ![image](https://github.com/AlenaRuicheng/mybigdata/blob/master/elements/AppcheBench%20executing.png)
 　　　　　　　　　　　　　　　　　　　　　图4  Apache Bench执行中<br>
-![image](https://github.com/AlenaRuicheng/mybigdata/blob/master/elements/view-pv.png)
+![image](https://github.com/AlenaRuicheng/mybigdata/blob/master/elements/AppcheBench%20executing.png)
 　　　　　　　　　　　　　　　　　　　　　　图5  查看pv统计情况<br>
 <br>shell脚本——创建Hive分区表
 ```Bash
