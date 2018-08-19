@@ -49,7 +49,7 @@ public class PvProcessor {
 	}
 	
 	/**
-	 * 刪除非法
+	 * 刪除非法数据
 	 */
 	public boolean deleteRow(String tableName) throws IOException {
         Table table = conn.getTable(TableName.valueOf(tableName));
