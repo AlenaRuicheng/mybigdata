@@ -27,7 +27,7 @@
 　　　　　　　　　　　　　　　　　　　　　图4  Apache Bench执行中<br>
 ![image](https://github.com/AlenaRuicheng/mybigdata/blob/master/elements/view-pv.png)
 　　　　　　　　　　　　　　　　　　　　　　图5  查看pv统计情况<br>
-<br>shell脚本——创建Hive分区表
+<br>shell脚本createHivePartitions.sh——创建Hive分区表
 ```Bash
 #!/bin/sh
 #This shell is designed to create tormorrow's partition
@@ -40,7 +40,7 @@ d=`date -d "1 day" +%d`
 hive -e "alter table logs.request_info add partition(year=${y},month=${m},day=${d})"
 hadoop fs -chown -R auas:auas /user/hive/warehouse/logs.db/request_info/year\=${y}
 ```
-<br>shell脚本——统计pv值并写入pv表中
+<br>shell脚本calculatePv.sh——统计pv值并写入pv表中
 ```Bash
 #!/bin/sh
 #This shell script is designed to caculate the page view of the last day
@@ -55,7 +55,7 @@ d=`date -d "-1 day" +%d`
 ts=$((ts%3))$ts
 hive -e "insert into logs.pv(rowid,year,month,day,page,amount) select ${ts},year,month,day,time_local,count(*) as amount from logs.request_info where year=${y} and month=${m} and day=${d} group by ${ts},year,month,day,time_local"
 ```
-<br>shell脚本——将Nginx日志目录下产生的日志文件滚动到spooldir下
+<br>shell脚本process_logs.sh——将Nginx日志目录下产生的日志文件滚动到spooldir下
 ```Bash
 #!/bin/sh
 #设置日期格式
