@@ -1,6 +1,17 @@
 ## 项目描述
 　　项目前端使用Spring MVC架构来展现，以及使用Spring与Hibernate注解模式进行编程，以此达到快速完成复杂业务流程的编程实现目的。本项目中通过Apache Bench压力测试工具访问或用户访问编写的网页，每次访问网页都将产生一条访问记录，这些访问日志记录被存储在Nginx的日志目录下，然后我们通过编写shell脚本以及crontab任务定期地将产生的日志移动到Flume指定的spooldir下，这样可以避免因日志记录不断增加造成日志文件过大的情况。接下来我们用Flume来收集日志并将日志传送给Kafka的生产者。在本项目中定义了两个Kafka消费者，其中一个消费者直接将访问日志写入HDFS中作为备份，另一个消费者先对日志记录进行数据清洗，过滤掉非法数据，之后把清洗过后的数据交给Hive处理。然后通过编写shell脚本和crontab任务定期地建立Hive分区表，以此避免数据在写入Hive的时候缺少相应的分区表而导致无法写入。最后使用HBaseStorageHandler将Hive与HBase关联起来，这样便可以将底层数据存储到HBase中，加快数据查找速度。<br>
-
+## 项目配置简述
+　　基于Spring MVC，Spring，Hibernate的基础类库实现。
+### Nginx配置
+　　Tomcat和Nginx实现动静资源隔离<br>
+　　shell和crontab实现日志滚动<br>
+　　Apache Bench进行压力测试
+### Flume和Kafka集群配置
+　　利用spooldir source提取生成的日志文件到Kafka集群<br>
+　　实现Kafka消费者，数据分成两部分处理，一部分作为原生数据直接sink输送到HDFS，作为备份;另一部分进行数据清洗，并将清洗后的数据写入到Hive的分区表中
+### HBase配置
+　　编写crontab计划任务定期调用shell脚本操作Hive，实现对前一天的日志信息进行页面访问量(page view)统计<br>
+　　使用HBaseStorageHandler将数据映射到HBase中，以便快速查询统计结果<br><br>
 ## 项目细节展示
 ![image](https://github.com/AlenaRuicheng/mybigdata/blob/master/elements/mybigdata-outline.jpg)
 　　　　　　　　　　　　　　　　　　　　　　　　　图1  项目导图<br>
